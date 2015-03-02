@@ -1,0 +1,18 @@
+language: java
+jdk:
+- openjdk7
+install:
+- ./build-omny.sh
+script:
+- ./build-travis.sh
+- ./bundle.sh $TRAVIS_BUILD_NUMBER
+deploy:
+  provider: s3
+  access_key_id: AKIAJPII7N6DVIOXPQAQ
+  secret_access_key:
+    secure: k6O7vPMMI9I/7LsNPpsT1f0d7KpHGf7man+A6pg+kpgx76Q1M4kE3w/REHCrsBtLhQRikGfYGBI6MTKt090U7SsHEeKqt34WviTT4VBI5YsCGQPR5UHEG40OTusMSgOvPJM97cseSnfGr7MKoxhRAn5GuaV/6wMvaAnpWE7bVl0=
+  bucket: omny-blog-releases
+  skip_cleanup: true
+  local-dir: output
+  on:
+    repo: omnycms/omny-blog
